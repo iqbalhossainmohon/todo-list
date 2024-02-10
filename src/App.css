@@ -7,3 +7,17 @@
   font-size: 50px;
   font-weight: bold;
 }
+
+.toggleButton{
+  background-color: rgb(194, 196, 199);
+  color: white;
+  border: 1px solid rgb(206, 131, 131);
+  border-radius: 10px;
+  margin-left: 5px;
+  padding: 0.375rem 0.75rem;
+  width: fit-content;
+  cursor: pointer;
+}
+.active{
+  background-color: rgb(74, 91, 185);
+}
