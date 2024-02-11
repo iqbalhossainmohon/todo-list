@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CreateTask from './Modals/CreateTask';
+import Card from './Card';
 
 const TodoList = () => {
 
@@ -7,11 +8,36 @@ const TodoList = () => {
     const [isComplited, setIsComplited] = useState(false);
     const [taskList, setTaskList] = useState([])
 
+
+    useEffect(() => {
+        let array = localStorage.getItem("Task-List")
+        if (array) {
+            let obj = JSON.parse(array)
+            setTaskList(obj)
+        }
+    }, [])
+
+    const deleteTask = (index) => {
+        let tempList = taskList
+        tempList.splice(index, 1)
+        localStorage.setItem("Task-List", JSON.stringify(tempList))
+        setTaskList(tempList)
+        window.location.reload()
+    }
+
+    const updateListArray = (obj, index) => {
+        let tempList = taskList
+        tempList[index] = obj
+        localStorage.setItem("Task-List", JSON.stringify(tempList))
+        setTaskList(tempList)
+        window.location.reload()
+    }
+
     const toggle = () => {
         setShow(!show);
     }
 
-    const saveTask = (taskObj)=>{
+    const saveTask = (taskObj) => {
         let tempList = taskList
         tempList.push(taskObj)
         localStorage.setItem("Task-List", JSON.stringify(tempList))
@@ -29,17 +55,18 @@ const TodoList = () => {
                         <button className={`toggleButton ${isComplited === false && 'active'}`} onClick={() => setIsComplited(false)}>Incomplited</button>
                         <button className={`toggleButton ${isComplited === true && 'active'}`} onClick={() => setIsComplited(true)}>Complited</button>
                     </div>
-
                     <div>
-                        <button onClick={() => setShow(true)} className='btn btn-primary mt-2'>Create Task</button>
+                        <button onClick={() => setShow(true)} className='btn btn-primary '>Create Task</button>
                     </div>
                 </div>
             </div>
 
             <div className='task-container'>
 
-                {/* <-- to-do list card -->   */}
-                {taskList.map((obj)=> <li>{obj.taskName}</li>)}
+                {
+                    taskList.map((obj, index) => <Card taskObj={obj} index={index}
+                        deleteTask={deleteTask} updateListArray={updateListArray} />)
+                }
 
             </div>
             <CreateTask show={show} setShow={setShow} toggle={toggle} save={saveTask} />
