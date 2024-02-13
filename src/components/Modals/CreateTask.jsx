@@ -6,11 +6,13 @@ const CreateTask = ({ show, toggle, save }) => {
 
     const handleSave = (event) => {
         event.preventDefault()
+        const id = Math.floor(Math.random() * 1000) + 1;
         const taskName = event.target.taskName.value
         const description = event.target.description.value
         const priority = event.target.priority.value
+        const isComplete = false; 
 
-        let taskObj = {taskName, description, priority}
+        let taskObj = {id, taskName, description, priority, isComplete}
         save(taskObj)
 
         console.log(taskObj)
