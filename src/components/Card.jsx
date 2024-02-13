@@ -40,7 +40,11 @@ const Card = ({ taskObj, index, deleteTask, updateListArray, handleStatus }) => 
                         onClick={() => setShow(true)} />
                     <RiDeleteBin6Fill size={24} title='Delete' style={{ "color": "red", "margin": "7px" }}
                         onClick={handleDelete} />
+
                         {/* this is a commnet */}
+                        {/* this is a secand commit  */}
+
+
                 </div>
             </div>
             <EditTask show={show} toggle={toggle} updateTask={updateTask} taskObj={taskObj} />
