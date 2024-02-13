@@ -56,7 +56,6 @@ const TodoList = () => {
                 items[foundIndex].isComplete = true;
 
                 localStorage.setItem("Task-List", JSON.stringify(items));
-
             } else {
                 console.log("Item not found");
             }
@@ -75,17 +74,29 @@ const TodoList = () => {
         let s = now.getSeconds();
         let completedOn = dd + '-' + mm + '-' + yyyy + ' at ' + h + ':' + m + ':' + s;
 
+        const fetchDataById = (id) => {
+            const taskList = JSON.parse(localStorage.getItem("Task-List"));
+            if (taskList) {
+                const foundTask = taskList.find(task => task.id === id);
+                return foundTask;
+            }
+            return null;
+        }
+        const taskId = id;
+        const task = fetchDataById(taskId);
+        console.log(task);
+
+
         let filteredItem = {
             ...taskList[index],
             completedOn: completedOn,
-            taskList: taskList
-            
+            task: task
         }
+
         let updatedCompletedArr = [...complitedTodos];
         updatedCompletedArr.push(filteredItem);
 
         setComplitedTodos(updatedCompletedArr);
-
     }
 
     return (
@@ -93,12 +104,7 @@ const TodoList = () => {
             <div className='header text-center pt-5'>
                 <h1 className='header-title'>Todo List</h1>
 
-                <div className='d-flex justify-content-evenly'>
-                    {/* <div className=''>
-                        <button className={`toggleButton ${isComplited === false && 'active'}`} onClick={() => setIsComplited(false)}>Incomplited</button>
-
-                        <button className={`toggleButton ${isComplited === true && 'active'}`} onClick={() => setIsComplited(true)}>Complited</button>
-                    </div> */}
+                <div className='d-flex justify-content-evenly'> 
                     <div>
                         <button onClick={() => setShow(true)} className='btn btn-primary mt-2'>Create Task</button>
                     </div>

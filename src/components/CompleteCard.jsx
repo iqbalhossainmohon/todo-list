@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import EditTask from './Modals/EditTask';
 
-const CompleteCard = ({ taskObj, index, deleteTask, updateListArray, handleStatus, id }) => {
+const CompleteCard = ({ taskObj, index, deleteTask, updateListArray }) => {
     const [show, setShow] = useState(false);
 
     const toggle = () => {
@@ -19,9 +19,6 @@ const CompleteCard = ({ taskObj, index, deleteTask, updateListArray, handleStatu
 
     console.log(taskObj)
 
-    // const handleStatus = () => {
-    //     console.log("hellow");
-    // }
 
     return (
 
@@ -31,17 +28,14 @@ const CompleteCard = ({ taskObj, index, deleteTask, updateListArray, handleStatu
             </div>
             <div class="d-flex justify-content-between position-relative">
                 <div className='task-header'>
-                    <span className='card-header fs-1 fw-medium font-' >{taskObj.taskName}</span>
-                    <p>{taskObj.description}</p>
-                    <p><span className='text-primary '>Priority:</span> {taskObj.priority}</p>
+                    <span className='card-header fs-1 fw-medium font-' >
+                        {taskObj.task.taskName}
+                    </span>
+                    <p>{taskObj.task.description}</p>
+                    <p><span className='text-primary '>Priority:</span> {taskObj.task.priority}</p>
                     <p><small>Completed at: </small>{taskObj.completedOn}</p>
                 </div>
                 <div className='actionBtn position-absolute bottom-0 end-0'>
-
-
-
-                    {/* <RiEditBoxFill size={24} style={{ "color": "Green", "margin": "7px" }}
-                        onClick={() => setShow(true)} /> */}
 
                     <RiDeleteBin6Fill size={24} title='Delete' style={{ "color": "red", "margin": "7px" }}
                         onClick={handleDelete} />

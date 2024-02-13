@@ -41,8 +41,6 @@ const Card = ({ taskObj, index, deleteTask, updateListArray, handleStatus }) => 
                     <RiDeleteBin6Fill size={24} title='Delete' style={{ "color": "red", "margin": "7px" }}
                         onClick={handleDelete} />
 
-                        {/* this is a commnet */}
-                        {/* this is a secand commit  */}
 
 
                 </div>
