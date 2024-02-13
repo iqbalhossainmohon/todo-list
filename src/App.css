@@ -21,3 +21,7 @@
 .active{
   background-color: rgb(74, 91, 185);
 }
+
+.actionBtn{
+  cursor: pointer;
+}
